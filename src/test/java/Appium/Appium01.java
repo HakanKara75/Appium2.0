@@ -1,5 +1,6 @@
 package Appium;
 
+import BaseClass.BaseClass;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
@@ -15,7 +16,7 @@ import java.net.URL;
 
 import static org.testng.AssertJUnit.*;
 
-public class Appium01 {
+public class Appium01 extends BaseClass {
     @Test
     public void test1() throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
@@ -38,20 +39,9 @@ public class Appium01 {
 
     @Test
     public void test2() throws MalformedURLException, InterruptedException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "RealDevice");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13");
-        capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
-        capabilities.setCapability("appPackage", "com.android.chrome");
-        capabilities.setCapability("appActivity", "com.google.android.apps.chrome.Main");
+        AndroidDriver driver= getDriver_RealDevice();
 
-        // Appium server URL
-        URL url = new URL("http://127.0.0.1:4723/wd/hub");
 
-        // Initialize AndroidDriver
-        AndroidDriver driver = new AndroidDriver(url, capabilities);
 
         // Wait for the app to load
         ReusableMethods.bekle(3);
